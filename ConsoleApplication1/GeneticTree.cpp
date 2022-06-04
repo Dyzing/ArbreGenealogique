@@ -5,6 +5,13 @@
 #include "GeneticTree.h"
 
 
+
+GeneticTree::GeneticTree()
+{
+	father = nullptr;
+	mother = nullptr;
+}
+
 GeneticTree::GeneticTree(Member& const m, std::vector<Member>& fam)
 {
 	father = nullptr;
@@ -19,6 +26,15 @@ GeneticTree::GeneticTree(Member& const m, GeneticTree& const moth, GeneticTree& 
 	mother = &moth;
 	member = m;
 	fam.push_back(m);
+}
+
+GeneticTree& GeneticTree::operator=(const GeneticTree& gt)
+{
+	father = gt.father;
+	mother = gt.mother;
+	member = gt.member;
+
+	return *this;
 }
 
 Member GeneticTree::getMember() const

@@ -47,29 +47,134 @@ int main()
 
     // ----------------------------------------------------------------------------------
 
-
-    /*std::cout << mamie_paternel.ToString() << std::endl;
-    std::cout << papy_paternel.ToString() << std::endl;
-    std::cout << pere.ToString() << std::endl;
-    
-    std::cout << mamie_maternel.ToString() << std::endl;
-    std::cout << papy_maternel.ToString() << std::endl;
-    std::cout << mere.ToString() << std::endl;*/
+    std::cout << "Member of family : \n" << std::endl;
 
     for (GeneticTree gt : totalTree.getTotalTree())
     {
         std::cout << gt.getMember().ToString() << std::endl;
     }
 
-    std::cout << "Family cardinal : " + std::to_string(totalTree.getNumberofFamilyMembers()) + "\n" << std::endl;
-    std::cout << "Green color in family : " + std::to_string(totalTree.getNumberOfMemberWholeFamilyEyeColor("green")) << std::endl;
-    std::cout << "Brown color in family : " + std::to_string(totalTree.getNumberOfMemberWholeFamilyEyeColor("brown")) << std::endl;
-    std::cout << "Blue color in family : " + std::to_string(totalTree.getNumberOfMemberWholeFamilyEyeColor("blue")) + "\n" << std::endl;
-    std::cout << "Mean Family year old : " + std::to_string(totalTree.getMeanOld()) + "\n" << std::endl;
-    std::cout << "Same color of green eye from Charlotte Matagne : " + std::to_string(totalTree.getNumberOfDescendanceHavingSameEyeColor("green", "Charlotte", "Matagne")) + "\n" << std::endl;
 
-    std::cout << "Descendance of Charlotte Matagne : "  << std::endl;
-    totalTree.getDescendancePreOrder("Charlotte", "Matagne");
+    int choice = -1;
+    std::string fn, ln, ec, yesOrno;
+    std::string mother_fn, mother_ln, father_fn, father_ln;
+    int yOb;
+    std::string order;
+    do {
+        std::cout << "\nSelect operation:\n"
+            "(1) Add a member\n"
+            "(2) Cardinal of family\n"
+            "(3) Moyenne age\n"
+            "(4) Pour une couleur de yeux entree par utilisateur, lister les personnes ayant cette couleur\n"
+            "(5) Pour une couleur de yeux entree par utilisateur, permet de lister tous les ancetres(ainsi que lui - meme) qui ont la meme couleur.\n"
+            "(6) Lister la descendance de une personne (in-order, pre-order and post-order)\n"
+            "(0) Quit\n" << std::endl;
+        std::cin >> choice;
+        switch (choice) {
+        case 1: //Add a member
+            std::cout << "\n Enter the firstname of the member" << std::endl;
+            std::cin >> fn;
+            std::cout << "\n Enter the lastname of the member" << std::endl;
+            std::cin >> ln;
+            std::cout << "\n Enter the year of birth of the member" << std::endl;
+            std::cin >> yOb;
+            std::cout << "\n Enter the eye color of the member" << std::endl;
+            std::cin >> ec;
+            do {
+                std::cout << "\n Does the member has parents ? Enter (yes) or (no)" << std::endl;
+                std::cin >> yesOrno;
+                if (yesOrno == "yes")
+                {
+                    std::cout << "\n Enter the firstname of the mother" << std::endl;
+                    std::cin >> mother_fn;
+                    std::cout << "\n Enter the lastname of the mother" << std::endl;
+                    std::cin >> mother_ln;
+                    GeneticTree gt_mother;
+                    for (GeneticTree gt : totalTree.getTotalTree())
+                    {
+                        if ((gt.getMember().firstName == mother_fn) && (gt.getMember().lastName == mother_ln))
+                        {
+                            gt_mother = gt;
+                            break;
+                        }
+                    }
+
+                    std::cout << "\n Enter the firstname of the father" << std::endl;
+                    std::cin >> father_fn;
+                    std::cout << "\n Enter the lastname of the father" << std::endl;
+                    std::cin >> father_ln;
+                    GeneticTree gt_father;
+                    for (GeneticTree gt : totalTree.getTotalTree())
+                    {
+                        if ((gt.getMember().firstName == father_fn) && (gt.getMember().lastName == father_ln))
+                        {
+                            gt_father = gt;
+                            break;
+                        }
+                    }
+
+                    Member member_with_parents = Member(fn, ln, yOb, ec);
+                    GeneticTree descendance_member_with_parents = GeneticTree(member_with_parents, gt_mother, gt_father, family);
+                    totalTree.addMember(descendance_member_with_parents);
+                    std::cout << "\n Member " + fn + " " + ln + " added to the family tree\n" << std::endl;
+                }
+                else if (yesOrno == "no")
+                {
+                    Member member_without_parents = Member(fn, ln, yOb, ec);
+                    GeneticTree descendance_member_without_parents = GeneticTree(member_without_parents, family);
+                    totalTree.addMember(descendance_member_without_parents);
+                    std::cout << "\n Member " + fn + " " + ln + " added to the family tree\n" << std::endl;
+                }
+            } while (yesOrno != "yes" && yesOrno != "no");           
+            break;
+        case 2: //Cardinal of family
+            std::cout << "\n Family cardinal : " + std::to_string(totalTree.getNumberofFamilyMembers()) + "\n" << std::endl;
+            break;
+        case 3: //Moyenne age
+            std::cout << "\n Mean Family year old : " + std::to_string(totalTree.getMeanOld()) + "\n" << std::endl;
+            break;
+        case 4: //Pour une couleur d’yeux entrée par l’utilisateur, lister les personnes ayant cette couleur
+            std::cout << "\n Enter the eye color of the member" << std::endl;
+            std::cin >> ec;
+            std::cout << "\n" + ec + " color eye in family : " + std::to_string(totalTree.getNumberOfMemberWholeFamilyEyeColor(ec)) + "\n" << std::endl;
+            break;
+        case 5: //Pour une couleur d’yeux entrée par l’utilisateur, permet de lister tous les ancetres(ainsi que lui - meme) qui ont la meme couleur.
+            std::cout << "\n Enter the firstname of the member" << std::endl;
+            std::cin >> fn;
+            std::cout << "\n Enter the lastname of the member" << std::endl;
+            std::cin >> ln;
+            std::cout << "\n Enter the eye color of the member" << std::endl;
+            std::cin >> ec;
+            std::cout << "\n Same color of " + ec + " eye from " + fn + " " + ln + " : " + std::to_string(totalTree.getNumberOfDescendanceHavingSameEyeColor(ec, fn, ln)) + "\n" << std::endl;
+            break;
+        case 6: //Lister la descendance d’une personne (in-order, pre-order and post-order)
+            std::cout << "\n Enter the firstname of the member" << std::endl;
+            std::cin >> fn;
+            std::cout << "\n Enter the lastname of the member" << std::endl;
+            std::cin >> ln;
+            do
+            {
+                std::cout << "\n What order ? Enter (pre) or (in) or (post)" << std::endl;
+                std::cin >> order;
+                if (order == "pre")
+                {
+                    std::cout << "\n Descendance of " + fn + " " + ln + " : " << std::endl;
+                    totalTree.getDescendancePreOrder(fn, ln);
+                }
+                else if (order == "in")
+                {
+
+                }
+                else
+                {
+
+                }
+            } while (order != "pre" && order != "in" && order != "post");
+            break;
+        default:
+            break;
+        }
+    } while (choice != 0);
 
     std::cout << "\n";
 }

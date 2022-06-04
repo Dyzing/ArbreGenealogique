@@ -11,7 +11,10 @@ int TotalTree::getNumberOfMemberWholeFamilyEyeColor(std::string const & ec) cons
 	for (GeneticTree gt : totalTree)
 	{
 		if (gt.getMember().eyeColor == ec)
+		{
 			++compteur;
+			std::cout << gt.getMember().firstName + " " + gt.getMember().lastName << std::endl;
+		}
 	}
 	return compteur;
 }
@@ -34,7 +37,10 @@ int TotalTree::getNumberOfDescendanceHavingSameEyeColor(std::string const & ec, 
 void TotalTree::getNumberOfDescendanceHavingSameEyeColor_rec(std::string const& ec, GeneticTree const& gt, int & compteur)
 {
 	if (gt.getMember().eyeColor == ec)
+	{
 		++compteur;
+		std::cout << gt.getMember().firstName + " " + gt.getMember().lastName << std::endl;
+	}
 	if (gt.getFather() != nullptr)
 	{
 		GeneticTree gt_father = *gt.getFather();

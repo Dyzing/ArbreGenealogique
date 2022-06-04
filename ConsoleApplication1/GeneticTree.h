@@ -23,8 +23,10 @@ private:
     std::vector<Member> frontiers; //All nodes that do not have a child
 
 public:
+    GeneticTree();
     GeneticTree(Member& const m, std::vector<Member>& fam);
     GeneticTree(Member& const m, GeneticTree& const moth, GeneticTree& const fath, std::vector<Member> & fam);
+    GeneticTree &operator=(const GeneticTree& gt);
     Member getMember() const;
     GeneticTree* getMother() const;
     GeneticTree* getFather() const;
