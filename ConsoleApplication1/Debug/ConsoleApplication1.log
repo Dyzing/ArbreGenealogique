@@ -1,17 +1,5 @@
-﻿  ConsoleApplication1.cpp
+﻿  TotalTree.cpp
 D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.h(26,16): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
 D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.h(27,16): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-  GeneticTree.cpp
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.h(26,16): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.h(27,16): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.cpp(8,41): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.cpp(16,41): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.cpp(16,66): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.cpp(16,91): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-  Member.cpp
-  TotalTree.cpp
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.h(26,16): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\GeneticTree.h(27,16): warning C4227: anachronisme utilisé : qualificateurs de référence ignorés
-D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\TotalTree.cpp(66,24): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-  Génération de code en cours...
+D:\UQAC\Session 3\Structure de données\ArbreGenealogique\ConsoleApplication1\TotalTree.cpp(65,24): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
   ConsoleApplication1.vcxproj -> D:\UQAC\Session 3\Structure de données\ArbreGenealogique\Debug\ConsoleApplication1.exe

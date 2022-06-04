@@ -79,16 +79,17 @@ void TotalTree::getDescendancePreOrder(std::string const& fn, std::string const&
 
 void TotalTree::getDescendancePreOrder_rec(GeneticTree const& gt) const
 {
+	std::cout << gt.getMember().firstName + " " + gt.getMember().lastName + " \n" << std::endl;
+
 	if (gt.getFather() != nullptr)
 	{
 		GeneticTree gt_father = *gt.getFather();
-		std::cout << gt_father.getMember().firstName + " " + gt_father.getMember().lastName + " \n" << std::endl;
 		getDescendancePreOrder_rec(gt_father);
 	}
 	if (gt.getMother() != nullptr)
 	{
 		GeneticTree gt_mother = *gt.getMother();
-		getNumberOfDescendanceHavingSameEyeColor_rec(ec, gt_mother, compteur);
+		getDescendancePreOrder_rec(gt_mother);
 	}
 	else
 	{

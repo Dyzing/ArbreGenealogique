@@ -68,6 +68,8 @@ int main()
     std::cout << "Mean Family year old : " + std::to_string(totalTree.getMeanOld()) + "\n" << std::endl;
     std::cout << "Same color of green eye from Charlotte Matagne : " + std::to_string(totalTree.getNumberOfDescendanceHavingSameEyeColor("green", "Charlotte", "Matagne")) + "\n" << std::endl;
 
+    std::cout << "Descendance of Charlotte Matagne : "  << std::endl;
+    totalTree.getDescendancePreOrder("Charlotte", "Matagne");
 
     std::cout << "\n";
 }
